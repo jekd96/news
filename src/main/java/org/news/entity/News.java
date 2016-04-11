@@ -11,6 +11,7 @@ import java.util.Date;
  * Created by Admin on 16.03.2016.
  */
 @Entity
+@Table(name = "news")
 public class News {
 
     @Id
@@ -24,6 +25,10 @@ public class News {
     @Column(name = "created_at_date")
     @JsonProperty("created_at_date")
     private Date createdAtDate = new Date();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -55,5 +60,13 @@ public class News {
 
     public void setCreatedAtDate(Date createdAtDate) {
         this.createdAtDate = createdAtDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
